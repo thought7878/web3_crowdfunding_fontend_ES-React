@@ -21,7 +21,10 @@ const CreateCampaign = () => {
     setForm({ ...form, [fieldName]: e.target.value });
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(form);
+  };
 
   return (
     <div className='bg-[#1c1c24] flex justify-center items-center flex-col rounded-[10px] sm:p-10 p-4'>
@@ -37,7 +40,7 @@ const CreateCampaign = () => {
       >
         <div className='flex flex-col gap-[40px]'>
           <FormField
-            labelName='Your name *'
+            labelName='Your Name *'
             placeholder='andi'
             inputType='text'
             value={form.name}
@@ -91,14 +94,23 @@ const CreateCampaign = () => {
               handleFormFieldChange('deadline', e);
             }}
           />
+          <FormField
+            labelName='Campaign Image'
+            placeholder='Place image URL of your campaign'
+            inputType='url'
+            value={form.image}
+            handleChange={(e) => {
+              handleFormFieldChange('image', e);
+            }}
+          />
           <div className='flex justify-center items-center mt-[40px]'>
             <Button
               btnType={'submit'}
               styles='bg-[#8c6dfd] w-full'
               title={'Submit'}
-              onClick={(e) => {
-                handleSubmit();
-              }}
+              // onClick={(e) => {
+              //   handleSubmit();
+              // }}
             />
           </div>
         </div>
