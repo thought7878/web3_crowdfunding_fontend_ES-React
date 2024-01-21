@@ -1992,7 +1992,7 @@
     uuid "^9.0.1"
     zod "^3.22.3"
 
-"@thirdweb-dev/chains@0.1.64":
+"@thirdweb-dev/chains@0.1.64", "@thirdweb-dev/chains@^0.1.64":
   version "0.1.64"
   resolved "https://registry.npmmirror.com/@thirdweb-dev/chains/-/chains-0.1.64.tgz#eddf627ebfc0d1ae76ec67a7f097b8653b1324c8"
   integrity sha512-U1iOuzemdI0skk5WQx6G3YKrs+7TbX+kYrlebkzOfadP5tGEH3oSSKxq9RgABYC/zaI3xFQNzLP4MBH8G/Wt3Q==
@@ -3144,7 +3144,7 @@ chalk@^2.4.2:
     escape-string-regexp "^1.0.5"
     supports-color "^5.3.0"
 
-chalk@^4.0.0:
+chalk@^4.0.0, chalk@^4.1.2:
   version "4.1.2"
   resolved "https://registry.npmmirror.com/chalk/-/chalk-4.1.2.tgz#aac4e2b7734a740867aeb16bf02aad556a1e7a01"
   integrity sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==
@@ -3376,6 +3376,14 @@ crc-32@^1.2.0:
   version "1.2.2"
   resolved "https://registry.npmmirror.com/crc-32/-/crc-32-1.2.2.tgz#3cad35a934b8bf71f25ca524b6da51fb7eace2ff"
   integrity sha512-ROmzCKrTnOwybPcJApAA6WBWij23HVfGVNKqqrZpuyZOHqK2CwHSvpGuyt/UNNvaIjEd8X5IFGp4Mh+Ie1IHJQ==
+
+create-chrome-debugger@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.npmmirror.com/create-chrome-debugger/-/create-chrome-debugger-1.1.0.tgz#ceb488adc0a95ee3f17d8bbc1c4fc904d6316dac"
+  integrity sha512-oy5r077X7hlfiMOGWUHzoudqvI9Q2lSR/AxDN34Xk1FdEuN3Z90SUkW5IyOrVUtuhjQs7Uw+QWDJWp0/+4nIhg==
+  dependencies:
+    chalk "^4.1.2"
+    util "^0.12.4"
 
 create-ecdh@^4.0.0:
   version "4.0.4"

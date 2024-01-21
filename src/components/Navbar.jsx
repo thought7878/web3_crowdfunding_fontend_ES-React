@@ -3,12 +3,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Button } from './';
 import { logo, menu, search, thirdweb } from '../../public/assets';
 import { navlinks } from '../constants';
+import { useStateContext } from '../context';
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState('dashboard');
   const [toggleDrawer, setToggleDrawer] = useState(false);
-  const address = '0xasdf1188';
+  const { connect, address, walletConfig } = useStateContext();
 
   return (
     <div className='flex md:flex-row flex-col-reverse justify-between mb-[35px] gap-6'>
@@ -35,8 +36,17 @@ const Navbar = () => {
           btnType='button'
           title={address ? 'Create a campaign' : 'Connect'}
           styles={address ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
-          onClick={() => {
-            if (address) navigate('create-campaign');
+          onClick={async () => {
+            if (address) {
+              navigate('create-campaign');
+            } else {
+              try {
+                const wallet = await connect(walletConfig);
+                console.log('connected to', wallet);
+              } catch (error) {
+                console.error('failed to connect', error);
+              }
+            }
           }}
         />
         <Link to='/profile'>
@@ -109,8 +119,17 @@ const Navbar = () => {
               btnType='button'
               title={address ? 'Create a campaign' : 'Connect'}
               styles={address ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
-              handleClick={() => {
-                if (address) navigate('create-campaign');
+              handleClick={async () => {
+                if (address) {
+                  navigate('create-campaign');
+                } else {
+                  try {
+                    const wallet = await connect(walletConfig);
+                    console.log('connected to', wallet);
+                  } catch (error) {
+                    console.error('failed to connect', error);
+                  }
+                }
               }}
             />
           </div>
