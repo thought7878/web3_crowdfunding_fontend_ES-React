@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useStateContext } from '../context';
+import { CampaignList } from '../components';
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -14,11 +15,20 @@ const Home = () => {
       const data = await getCampaigns();
       console.log('data', data);
       setCampaigns(data);
+      // target:ethers.utils.formatEther(target)
       setIsLoading(false);
     })();
   }, [address, contract]);
 
-  return <div>Home</div>;
+  return (
+    <div>
+      <CampaignList
+        title={'Campaigns'}
+        campaigns={campaigns}
+        isLoading={isLoading}
+      />
+    </div>
+  );
 };
 
 export default Home;

@@ -42,10 +42,11 @@ export const StateContextProvider = ({ children }) => {
     }
   };
 
-  const getCampaigns = () => {
+  const getCampaigns = async () => {
     // console.log('contract', contract);
     // return useContractRead(contract, 'getCampaigns');
-    return contract && contract.call('getCampaigns');
+    const campaigns = await (contract && contract.call('getCampaigns'));
+    return campaigns;
   };
 
   return (
