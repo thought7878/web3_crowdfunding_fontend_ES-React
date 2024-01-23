@@ -2,7 +2,6 @@ import React, { useContext, createContext } from 'react';
 import {
   useAddress,
   useContract,
-  useMetamask,
   useConnect,
   useContractWrite,
   metamaskWallet,
