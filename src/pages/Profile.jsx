@@ -15,19 +15,18 @@ const Profile = () => {
       const data = await getUserCampaigns();
       console.log('data', data);
       setCampaigns(data);
-      // target:ethers.utils.formatEther(target)
       setIsLoading(false);
     })();
   }, [address, contract]);
 
   return (
-    <div>
+    <>
       <CampaignList
         title={'Campaigns'}
         campaigns={campaigns}
         isLoading={isLoading}
       />
-    </div>
+    </>
   );
 };
 

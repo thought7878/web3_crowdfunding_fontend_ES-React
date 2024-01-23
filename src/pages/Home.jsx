@@ -21,13 +21,13 @@ const Home = () => {
   }, [address, contract]);
 
   return (
-    <div>
+    <>
       <CampaignList
         title={'Campaigns'}
         campaigns={campaigns}
         isLoading={isLoading}
       />
-    </div>
+    </>
   );
 };
 
