@@ -45,8 +45,14 @@ export const StateContextProvider = ({ children }) => {
   const getCampaigns = async () => {
     // console.log('contract', contract);
     // return useContractRead(contract, 'getCampaigns');
+    return await (contract && contract.call('getCampaigns'));
+  };
+  const getUserCampaigns = async () => {
     const campaigns = await (contract && contract.call('getCampaigns'));
-    return campaigns;
+    const filteredCampaigns = campaigns.filter((campaign) => {
+      return campaign.owner === address;
+    });
+    return filteredCampaigns;
   };
 
   return (
@@ -58,6 +64,7 @@ export const StateContextProvider = ({ children }) => {
         contract,
         createCampaign: publishCampaign,
         getCampaigns,
+        getUserCampaigns,
       }}
     >
       {children}
