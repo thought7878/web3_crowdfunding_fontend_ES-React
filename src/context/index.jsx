@@ -4,6 +4,7 @@ import {
   useContract,
   useConnect,
   useContractWrite,
+  useContractRead,
   metamaskWallet,
 } from '@thirdweb-dev/react';
 import { ethers } from 'ethers';
@@ -41,6 +42,12 @@ export const StateContextProvider = ({ children }) => {
     }
   };
 
+  const getCampaigns = () => {
+    // console.log('contract', contract);
+    // return useContractRead(contract, 'getCampaigns');
+    return contract && contract.call('getCampaigns');
+  };
+
   return (
     <StateContext.Provider
       value={{
@@ -49,6 +56,7 @@ export const StateContextProvider = ({ children }) => {
         walletConfig,
         contract,
         createCampaign: publishCampaign,
+        getCampaigns,
       }}
     >
       {children}
