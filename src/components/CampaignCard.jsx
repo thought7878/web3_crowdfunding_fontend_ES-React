@@ -16,7 +16,10 @@ const CampaignCard = ({
   const remainDays = daysLeft(deadline.toNumber());
 
   return (
-    <div className='sm:w-[288px] w-full rounded-[15px] bg-[#1c1c24] cursor-pointer'>
+    <div
+      onClick={handleClick}
+      className='sm:w-[288px] w-full rounded-[15px] bg-[#1c1c24] cursor-pointer'
+    >
       <img
         src={image}
         alt={title}
