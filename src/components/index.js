@@ -5,3 +5,4 @@ export { default as FormField } from './FormField';
 export { default as CampaignList } from './CampaignList';
 export { default as CampaignCard } from './CampaignCard';
 export { default as CountCard } from './CountCard';
+export { default as Loader } from './Loader';

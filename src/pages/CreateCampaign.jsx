@@ -4,7 +4,7 @@ import { ethers } from 'ethers';
 import { money } from '../../public/assets';
 import { Button, FormField } from '../components';
 import { checkIfImage } from '../utils';
-import Loader from '../components/Loader';
+import { Loader } from '../components';
 import { useStateContext } from '../context';
 
 const CreateCampaign = () => {

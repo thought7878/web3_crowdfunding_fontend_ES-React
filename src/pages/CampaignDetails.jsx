@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ethers } from 'ethers';
 
 import { useStateContext } from '../context';
-import { Button } from '../components';
+import { Button, Loader } from '../components';
 import { calculateBarPercentage, daysLeft } from '../utils';
 import { thirdweb } from '../../public/assets';
 import { CountCard } from '../components';
@@ -24,15 +24,12 @@ const CampaignDetails = () => {
   const amountCollected = campaign.amountCollected;
   const target = campaign.target;
 
-  const handleDonate = async () => {
-    console.log('handleDonate');
-
+  const handleDonate = useCallback(async () => {
     setIsLoading(true);
-    // await donate(campaign._id, amount);
-    console.log('handleDonate', await donate(campaign._id, amount));
+    await donate(campaign._id, amount);
     navigate('/');
     setIsLoading(false);
-  };
+  }, [campaign, amount]);
 
   const fetchDonators = async () => {
     const data = await getDonations(campaign._id);
@@ -48,7 +45,7 @@ const CampaignDetails = () => {
 
   return (
     <div>
-      {isLoading && 'Loading'}
+      {isLoading && <Loader />}
       <div className='w-full flex md:flex-row flex-col mt-10 gap-[30px]'>
         <div className='flex flex-1 flex-col'>
           <img
@@ -75,7 +72,7 @@ const CampaignDetails = () => {
         <div className='flex flex-col md:w-[150px] w-full flex-wrap justify-between gap-[30px]'>
           <CountCard title='Days Left' value={remainDays} />
           <CountCard title={`Raised of ${target}`} value={amountCollected} />
-          <CountCard title='Total Backers' value={remainDays} />
+          <CountCard title='Total Backers' value={donators.length} />
         </div>
       </div>
 

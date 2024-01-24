@@ -24,6 +24,7 @@ const CampaignList = ({ title, isLoading, campaigns }) => {
             className='w-[100px] h-[100px] object-contain'
           />
         )}
+        {/* {isLoading && <Loader />} */}
         {!isLoading && campaigns?.length === 0 && (
           <p className='font-semibold text-[14px] leading-[30px] text-[#818183]'>
             You have not created any campaign yet

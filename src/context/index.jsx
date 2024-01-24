@@ -69,7 +69,7 @@ export const StateContextProvider = ({ children }) => {
     if (!contract) {
       return [];
     }
-    const campaigns = await contract.call('getCampaigns');
+    const campaigns = await getCampaigns();
     const filteredCampaigns = campaigns.filter((campaign) => {
       return campaign.owner === address;
     });
