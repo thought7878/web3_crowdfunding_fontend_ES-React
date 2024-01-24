@@ -13,7 +13,7 @@ const CampaignCard = ({
   image,
   handleClick,
 }) => {
-  const remainDays = daysLeft(deadline.toNumber());
+  const remainDays = daysLeft(deadline);
 
   return (
     <div
@@ -47,10 +47,10 @@ const CampaignCard = ({
         <div className='flex justify-between flex-wrap mt-[15px] gap-2'>
           <div className='flex flex-col'>
             <h4 className='font-semibold text-[14px] text-[#b2b3bd] leading-[22px]'>
-              {ethers.utils.formatEther(amountCollected.toString())}
+              {amountCollected}
             </h4>
             <p className='mt-[3px] font-normal text-[12px] leading-[18px] text-[#808191] sm:max-w-[120px] truncate'>
-              Raised of {ethers.utils.formatEther(target.toString())}
+              Raised of {target}
             </p>
           </div>
           <div className='flex flex-col'>

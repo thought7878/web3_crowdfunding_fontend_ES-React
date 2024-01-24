@@ -43,16 +43,69 @@ export const StateContextProvider = ({ children }) => {
   };
 
   const getCampaigns = async () => {
-    // console.log('contract', contract);
     // return useContractRead(contract, 'getCampaigns');
-    return await (contract && contract.call('getCampaigns'));
+    if (!contract) {
+      return [];
+    }
+    const data = await contract.call('getCampaigns');
+    console.log('getCampaigns:', data);
+    const campaigns = data.map((campaign, i) => ({
+      owner: campaign.owner,
+      title: campaign.title,
+      description: campaign.description,
+      target: ethers.utils.formatEther(campaign.target.toString()),
+      deadline: parseInt(campaign.deadline._hex),
+      amountCollected: ethers.utils.formatEther(
+        campaign.amountCollected.toString()
+      ),
+      image: campaign.image,
+      _id: i,
+    }));
+
+    return campaigns;
   };
+
   const getUserCampaigns = async () => {
-    const campaigns = await (contract && contract.call('getCampaigns'));
+    if (!contract) {
+      return [];
+    }
+    const campaigns = await contract.call('getCampaigns');
     const filteredCampaigns = campaigns.filter((campaign) => {
       return campaign.owner === address;
     });
     return filteredCampaigns;
+  };
+
+  const donate = async (_id, amount) => {
+    try {
+      if (!contract) {
+        return null;
+      }
+      const data = await contract.call('donateToCampaign', [_id], {
+        value: ethers.utils.parseEther(amount),
+      });
+      return data;
+    } catch (error) {
+      console.log('donate error', error);
+    }
+  };
+  const getDonations = async (_id) => {
+    try {
+      const donations = await contract.call('getDonaters', [_id]);
+      const numberOfDonations = donations[0].length;
+      let parsedDonations = [];
+
+      for (let index = 0; index < numberOfDonations; index++) {
+        parsedDonations.push({
+          donator: donations[0][index],
+          donation: ethers.utils.formatEther(donations[1][index.toString()]),
+        });
+      }
+
+      return parsedDonations;
+    } catch (error) {
+      console.log('getDonations error', error);
+    }
   };
 
   return (
@@ -65,6 +118,8 @@ export const StateContextProvider = ({ children }) => {
         createCampaign: publishCampaign,
         getCampaigns,
         getUserCampaigns,
+        donate,
+        getDonations,
       }}
     >
       {children}
